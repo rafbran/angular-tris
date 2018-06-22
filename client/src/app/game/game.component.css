@@ -1,0 +1,27 @@
+
+td {
+  width: 100px;
+  height: 100px;
+  cursor:pointer;
+  text-align:center;
+  font-size:50px;
+}
+table {
+  margin: 5px auto;
+}
+.vert {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+.hori {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.fa-remove {
+  color:#dc3545;
+}
+
+.fa-circle-o {
+  color:#007bff;
+}
