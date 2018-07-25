@@ -65,15 +65,21 @@ export class GameComponent implements OnInit {
     if (this.board.length >= 9) {
       this.socketService.tiedGame();
     }
-    const win = [7, 56, 448, 73, 146, 292, 273, 84];
-    let values = 0;
+    const wins: Array<number> = [7, 56, 448, 73, 146, 292, 273, 84];
+    let playerMovesValues = 0;
     this.board.forEach(element => {
       if (element.player.id === this.socketService.player.id) {
-        values += element.value;
+        playerMovesValues += element.value;
       }
     });
-    if (win.includes(values)) {
-      this.socketService.announceWinner();
-    }
+    wins.forEach(win => {
+      if((win & playerMovesValues) === win) {
+        this.socketService.announceWinner();
+        return false;
+      }
+    });
+    // if (win.includes(values)) {
+    //   this.socketService.announceWinner();
+    // }
   }
 }
