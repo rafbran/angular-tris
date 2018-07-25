@@ -19,9 +19,13 @@ export class GameComponent implements OnInit {
   ngOnInit() {
     this.socketService.userJoined().subscribe(data => { this.playerCount = data;  } );
     this.socketService.gameOver().subscribe(data => {
+      this.board = [];
       if (data) {this.gameOver = 'Vincitore ' + data.name;
     } else { this.gameOver = 'Pareggio'; } } );
-    this.socketService.userLeft().subscribe(data => { this.playerCount = data; } );
+    this.socketService.userLeft().subscribe(data => { 
+      this.playerCount = data;
+      this.gameOver = '';
+    } );
     this.socketService.newMoveReceived().subscribe(data => {
       this.socketService.player.currentTurno = !this.socketService.player.currentTurno;
       this.board.push(data);
@@ -78,8 +82,5 @@ export class GameComponent implements OnInit {
         return false;
       }
     });
-    // if (win.includes(values)) {
-    //   this.socketService.announceWinner();
-    // }
   }
 }

@@ -39,16 +39,14 @@ module.exports.listen = (http) => {
             var player = { id: socket.id, name: playerName, symbol: symbol, currentTurno: turno  };
             players[socket.id] = playerName;
             socket.emit('get player data', player);
-            socket.emit('player joined', room.length);
 
             if (room && room.length <= 2) {
                 console.log('Stanza', room);
-                socket.in('room-1').emit('player joined', room.length);
+                socketIo.in('room-1').emit('player joined', room.length);
                 
             } else {
                 socket.leave('room-1');
                 socket.emit('err', 'Stanza Piena');
-                console.log("stanza piena");
             }
         });
 
