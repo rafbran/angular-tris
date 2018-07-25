@@ -35,11 +35,14 @@
       <strong>In attesa di un giocatore...</strong>
     </div>
   </ng-template>
-  <div [hidden]="!socketService.player.currentTurno">
+  <div [hidden]="playerCount == 1">
+    <div [hidden]="!socketService.player.currentTurno">
       <div class="alert alert-primary text-center" role="alert">
         <strong>E' il tuo turno</strong>
       </div>
     </div>
+  </div>
+
 </div>
 <div [hidden]="!gameOver">
   <div class="alert alert-primary" role="alert">
